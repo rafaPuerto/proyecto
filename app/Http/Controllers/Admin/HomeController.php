@@ -31,5 +31,17 @@ class HomeController
             }
             return view('admin.users.show', compact('user', 'clases'));
         }
+        if(Auth::user()->hasRole('Administrativo')){
+            $users=User::all();
+            foreach($users as $user)
+            {
+                $user->hora_nacimiento=$user->convertToCarbon($user);
+            }
+            return view('admin.users.index', compact('users'));
+        }
+        if(Auth::user()->hasRole('Administrador'))
+        {
+            return view('admin.users.adminHome');
+        }
     }
 }

@@ -134,4 +134,10 @@ class User extends Authenticatable
         return \Illuminate\Support\Str::random(5);
         
     }
+
+    public function convertToCarbon($user)
+    {
+        $user->fecha_nacimiento=Carbon::createFromFormat('Y-m-d',$user->fecha_nacimiento);
+        return $user->fecha_nacimiento;
+    }
 }

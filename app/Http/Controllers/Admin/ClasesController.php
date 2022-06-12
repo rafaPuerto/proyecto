@@ -23,8 +23,8 @@ class ClasesController extends Controller
     public function index()
     {
         //EJEMPLO ABORT_IF POR ROL
-        //abort_if(Auth::$user->hasRole('admin'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        abort_if(Gate::denies('setting_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_unless(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Instructor')  , Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('setting_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $clase = Clase::all();
 
@@ -33,6 +33,7 @@ class ClasesController extends Controller
 
     public function create(Request $request)
     {
+        abort_if(!Auth::user()->hasRole('Instructor'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $user=User::where('id',$request->user)->first();
         if($request->verificacion==$user->cadena_unica)
         {
@@ -63,7 +64,7 @@ class ClasesController extends Controller
 
     public function edit(Clase $clase)
     {
-        abort_if(Gate::denies('setting_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(!Auth::user()->hasRole('Instructor'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
         $faltas = Falta::all();
         $grupos = Grupo::All();
@@ -103,7 +104,7 @@ class ClasesController extends Controller
     
     public function show(Clase $clase)
     {
-        abort_if(Gate::denies('setting_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(!Auth::user()->hasRole('Instructor'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $clase->hora_inicio=Carbon::createFromFormat('Y-m-d H:i:s',$clase->hora_inicio);
         if($clase->hora_final!=null)

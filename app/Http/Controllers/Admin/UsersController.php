@@ -24,7 +24,7 @@ class UsersController extends Controller
         $users = User::all();
         foreach($users as $user)
         {
-            $user->fecha_nacimiento=Carbon::createFromFormat('Y-m-d',$user->fecha_nacimiento);
+            $user->fecha_nacimiento=$user->convertToCarbon($user);
         }
 
         return view('admin.users.index', compact('users'));

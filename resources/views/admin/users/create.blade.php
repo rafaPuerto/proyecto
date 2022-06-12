@@ -120,6 +120,7 @@
                         @if ($rol->id == 2)
                             <option value="{{ $rol->id }}" selected>{{ $rol->title }}</option>
                         @elseif($rol->id == 4)
+                        
                         @else
                             <option value="{{ $rol->id }}">{{ $rol->title }}</option>
                         @endif

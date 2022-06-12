@@ -35,7 +35,6 @@
                   <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
               </li>
           </ul>
-
           <!-- Right navbar links -->
           @if(count(config('panel.available_languages', [])) > 1)
             <ul class="navbar-nav ml-auto">
@@ -118,8 +117,8 @@
   let colvisButtonTrans = '{{ trans('global.datatables.colvis') }}'
 
   let languages = {
-    'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
-    'es': 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
+    'en': 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
+    //'es': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
   };
 
   $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, { className: 'btn' })
