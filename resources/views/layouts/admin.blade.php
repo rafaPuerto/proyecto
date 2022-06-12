@@ -27,17 +27,17 @@
 
 <body class="sidebar-mini layout-fixed" style="height: auto;">
     <div class="wrapper">
-      @if (Request::is("admin") && Auth::user()->hasRole('Alumno'))
-      <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-        <!-- Left navbar links -->
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-                </li>
-            </ul>
+      @if (Request::is("admin") && Auth::user()->hasRole('Alumno') || Request::is("admin") && Auth::user()->hasRole('Administrativo'))
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+          <!-- Left navbar links -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                  <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+              </li>
+          </ul>
 
-            <!-- Right navbar links -->
-            @if(count(config('panel.available_languages', [])) > 1)
+          <!-- Right navbar links -->
+          @if(count(config('panel.available_languages', [])) > 1)
             <ul class="navbar-nav ml-auto">
               <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
@@ -50,11 +50,9 @@
                 </div>
               </li>
             </ul>
-            @endif
-            
-          </nav>
-        @endif
-          
+          @endif
+        </nav>
+      @endif
         @include('partials.menu')
         <div class="content-wrapper" style="min-height: 917px;">
             <!-- Main content -->
@@ -121,6 +119,7 @@
 
   let languages = {
     'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+    'es': 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
   };
 
   $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, { className: 'btn' })

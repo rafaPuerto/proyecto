@@ -1,17 +1,18 @@
 @extends('layouts.admin')
+<!--
 <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-    <!-- Left navbar links -->
+    Left navbar links 
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
     </ul>
 
-    <!-- Right navbar links -->
+        Right navbar links 
         <div class="navbar-nav ml-auto">
             <input type="text" id="buscar" placeholder="Buscar alumno">
         </div>
-</nav>
+</nav>-->
 @section('content')
 
 <div class="card card-solid">
@@ -19,7 +20,7 @@
             <div class="row" id="alumnos">
                 @foreach ($myStudents as $myStudent)
                     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column" id="alumno_{{ $loop->iteration }}">
-                        <a class="card bg-light d-flex flex-fill" href="{{ route('admin.users.show', $myStudent->id) }}" >
+                        <a class="card bg-light d-flex flex-fill" href="{{ route('admin.users.show', $myStudent->id) }}">
                             <div class="card-header text-muted border-bottom-0">
                                 <p class="badge badge-success">{{ $myStudent->roles()->first()->title }}</p>
                             </div>

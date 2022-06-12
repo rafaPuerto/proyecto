@@ -11,7 +11,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.lista') }} de {{ trans('cruds.user.title') }} 
     </div>
 
     <div class="card-body">
@@ -50,52 +50,54 @@
                 </thead>
                 <tbody>
                     @foreach($users as $key => $user)
-                        <tr data-entry-id="{{ $user->id }}">
-                            <td>
-                                &nbsp;
-                            </td>
-                            <td>
-                                {{ $user->nombre ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->apellidos ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->dni ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->fecha_nacimiento->format('d/m/Y') ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->telefono ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->email ?? '' }}
-                            </td>
-                            <td>
-                                @if ($user->roles()->first()->title == "Alumno")
-                                    <p class="badge badge-success">{{ $user->roles()->first()->title }}</p>
-                                @elseif ($user->roles()->first()->title == "Instructor")
-                                    <p class="badge badge-danger">{{ $user->roles()->first()->title }}</p>
-                                @elseif ($user->roles()->first()->title == "Administrativo")
-                                    <p class="badge badge-warning">{{ $user->roles()->first()->title }}</p>
-                                @endif
-                                
-                            </td>
-                            <td>
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                            </td>
-                        </tr>
+                        @if($user->roles()->first()->title != "Administrador")
+                            <tr data-entry-id="{{ $user->id }}">
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    {{ $user->nombre ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $user->apellidos ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $user->dni ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $user->fecha_nacimiento->format('d/m/Y') ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $user->telefono ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $user->email ?? '' }}
+                                </td>
+                                <td>
+                                    @if ($user->roles()->first()->title == "Alumno")
+                                        <p class="badge badge-success">{{ $user->roles()->first()->title }}</p>
+                                    @elseif ($user->roles()->first()->title == "Instructor")
+                                        <p class="badge badge-danger">{{ $user->roles()->first()->title }}</p>
+                                    @elseif ($user->roles()->first()->title == "Administrativo")
+                                        <p class="badge badge-warning">{{ $user->roles()->first()->title }}</p>
+                                    @endif
+                                    
+                                </td>
+                                <td>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
+                                            {{ trans('global.view') }}
+                                        </a>
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
+                                            {{ trans('global.edit') }}
+                                        </a>
+                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        </form>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
