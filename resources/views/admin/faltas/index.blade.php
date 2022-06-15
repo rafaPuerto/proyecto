@@ -1,12 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.prices.create") }}">
-            {{ trans('global.add') }} {{ trans('cruds.price.title_singular') }}
-        </a>
-    </div>
-</div>
 <div class="card">
     <div class="card-header bg-red">
         <h4 class="card-title float-left">Fallos</h4>

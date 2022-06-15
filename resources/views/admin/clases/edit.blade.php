@@ -9,8 +9,8 @@
         <form action="{{ route("admin.clases.update", [$clase->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div id="ruta">
-                <select class="form-control" name="recorrido" required >
+            <div id="ruta" class="pb-2">
+                <select class="form-control " name="recorrido" required >
                     <option value="">Selecciona una</option>
                     <option value="Zona 1">Ruta 1</option>
                     <option value="Zona 2">Ruta 2</option>
@@ -21,14 +21,13 @@
             </div>
             <div id="faltas">
                 <div class="card card-danger">
-                    <div class="card-header row">
-                        <h4 class="card-title float-left">
-                            <a class="d-block" data-toggle="collapse" href="#fallos">
+                    <a class="d-block" data-toggle="collapse" href="#fallos">
+                        <div class="card-header row">
+                            <h4 class="card-title float-left">
                                 Fallos
-                            </a>
-                        </h4>
-                        <input class="float-right" type="text" id="buscar" placeholder="Buscar fallos">
-                    </div>
+                            </h4>
+                        </div>
+                    </a>
                     <div id="fallos" class="collapse" data-parent="#accordion">
                         <div class="card-body">
                             @foreach ($grupos as $grupo)
@@ -48,7 +47,13 @@
                                                     <ul>
                                                         <div id="fallos">
                                                             <input type="checkbox" name="faltas[]" value="{{ $falta->id }}" id="r{{ $falta->id }}"/>
-                                                            <label class="fallo" for="r{{ $falta->id }}" >{{ $falta->fallo }}</label>
+                                                            @if ($falta->tipo == 'Leve')
+                                                                <label class="fallo" for="r{{ $falta->id }}"><span class="dot dot-leve"></span>{{ $falta->fallo }}</label>
+                                                            @elseif ($falta->tipo == 'Deficiente')
+                                                                <label class="fallo" for="r{{ $falta->id }}"><span class="dot dot-deficiente"></span>{{ $falta->fallo }}</label>
+                                                            @elseif ($falta->tipo == 'Eliminatoria')
+                                                                <label class="fallo" for="r{{ $falta->id }}"><span class="dot dot-eliminatoria"></span>{{ $falta->fallo }}</label>
+                                                            @endif
                                                         </div>
                                                     </ul>
                                                 @endforeach
@@ -60,9 +65,9 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button class="btn btn-danger btn-circle btn-xl" id="btn-finalizar" type="submit"><i class="fas fa-check-circle"></i></button>
-                </div>
+            </div>
+            <div>
+                <button class="btn btn-danger btn-circle btn-xl" id="btn-finalizar" type="submit"><i class="fas fa-check-circle"></i></button>
             </div>
         </form>
     </div>
@@ -71,6 +76,7 @@
 @section('scripts')
 @parent
 <script type="text/javascript">
+/*
 $(document).ready(function(){
   $("#buscar").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -79,5 +85,6 @@ $(document).ready(function(){
     });
   });
 });
+*/
 </script>
 @endsection

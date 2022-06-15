@@ -14,23 +14,23 @@
                 <li class="nav-item">
                     <a href="{{ route("admin.home") }}" class="nav-link">
                         <p>
-                            <i class="fas fa-fw fa-tachometer-alt">
-
-                            </i>
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
                             <span>{{ trans('global.principal') }}</span>
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-                        <i class="fa-fw fas fa-user">
-                            
-                        </i>
-                        <p>
-                            <span>{{ trans('cruds.user.title') }}</span>
-                        </p>
-                    </a>
-                </li>
+                @if(Auth::user()->hasRole('Administrador'))
+                    <li class="nav-item">
+                        <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-user">
+                                
+                            </i>
+                            <p>
+                                <span>{{ trans('cruds.user.title') }}</span>
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route("admin.faltas.index") }}" class="nav-link {{ request()->is('admin/faltas') || request()->is('admin/faltas/*') ? 'active' : '' }}">
                         <i class="fas fa-angle-double-down">

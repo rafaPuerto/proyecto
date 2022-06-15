@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Autoescuelas Séneca',
+    'site_title' => 'Proyecto Autoescuela',
 ];

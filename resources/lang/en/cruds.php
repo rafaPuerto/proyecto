@@ -63,6 +63,7 @@ return [
             'email_verified_at_helper' => '',
             'password'                 => 'Contraseña',
             'password_helper'          => '',
+            'rol'                      => 'Rol',
             'roles'                    => 'Roles',
             'roles_helper'             => '',
             'remember_token'           => 'Remember Token',

@@ -11,15 +11,17 @@
         <form action="{{ route('admin.clases.update', [$clase->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div id="timer">
-                <div class="row" id="reloj">
-                    <div id="hour" class="">00</div>
-                    <div class="divider">:</div>
-                    <div id="minute" class="">00</div>
-                    <div class="divider">:</div>
-                    <div id="second" class="">00</div>                
-                </div>
-                <button id="btn-comenzar" type="button">Pausar Clase</button>
+            <div id="timer" class="d-flex justify-content-center row">
+                <h3 class="col-sm-1">
+                    <div class="row" id="reloj">
+                        <div id="hour" class="">00</div>
+                        <div class="divider">:</div>
+                        <div id="minute" class="">00</div>
+                        <div class="divider">:</div>
+                        <div id="second" class="">00</div>                
+                    </div>
+                </h3>
+                <button class="col-sm-1" id="btn-comenzar" type="button">Pausar Clase</button>
             </div>
             <div class="form-group {{ $errors->has('value') ? 'has-error' : '' }}">
                 <label for="comentarios">{{ trans('cruds.clases.fields.comentarios') }}</label>

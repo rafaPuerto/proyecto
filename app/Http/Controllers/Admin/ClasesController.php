@@ -104,7 +104,7 @@ class ClasesController extends Controller
     
     public function show(Clase $clase)
     {
-        abort_if(!Auth::user()->hasRole('Instructor'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_unless(Auth::user()->hasRole('Instructor') || Auth::user()->hasRole('Alumno'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $clase->hora_inicio=Carbon::createFromFormat('Y-m-d H:i:s',$clase->hora_inicio);
         if($clase->hora_final!=null)

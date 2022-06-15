@@ -27,14 +27,13 @@
 
 <body class="sidebar-mini layout-fixed" style="height: auto;">
     <div class="wrapper">
-      @if (Request::is("admin") && Auth::user()->hasRole('Alumno') || Request::is("admin") && Auth::user()->hasRole('Administrativo'))
-        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+      <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
           <!-- Left navbar links -->
-          <ul class="navbar-nav">
-            <li class="nav-item">
-                  <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-              </li>
-          </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+            </ul>
           <!-- Right navbar links -->
           @if(count(config('panel.available_languages', [])) > 1)
             <ul class="navbar-nav ml-auto">
@@ -51,7 +50,6 @@
             </ul>
           @endif
         </nav>
-      @endif
         @include('partials.menu')
         <div class="content-wrapper" style="min-height: 917px;">
             <!-- Main content -->

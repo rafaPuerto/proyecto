@@ -41,7 +41,7 @@
                             {{ trans('cruds.user.fields.email') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.roles') }}
+                            {{ trans('cruds.user.fields.rol') }}
                         </th>
                         <th>
                             &nbsp;

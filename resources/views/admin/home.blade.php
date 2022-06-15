@@ -1,18 +1,4 @@
 @extends('layouts.admin')
-
-<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-    <!--Left navbar links-->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-        </li>
-    </ul>
-
-    <!--Right navbar links-->
-    <div class="navbar-nav ml-auto">
-        <input type="text" id="buscar" placeholder="Buscar alumno">
-    </div>
-</nav>
 @section('content')
 
 <div class="card card-solid">
